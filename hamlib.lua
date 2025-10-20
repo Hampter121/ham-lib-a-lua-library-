@@ -48,10 +48,6 @@ ham.timestamp = function() return os.time() end
 ham.datefmt = function(fmt) return os.date(fmt) end
 ham.osti = os.time
 ham.oscl = os.clock
-ham.bwait = function(seconds)
-    local t0 = ham.oscl()
-    while ham.oscl() - t0 < seconds do end
-end
 ham.timestamp = function(fmt)
     fmt = fmt or "%Y-%m-%d %H:%M:%S"
     return os.date(fmt, ham.osti())
