@@ -1,4 +1,4 @@
--- hamlib 0.3.1
+-- hamlib 0.3.2
 -- by Hampter
 
 local ham = {}
