@@ -1,4 +1,4 @@
--- hamlib 0.4
+-- hamlib 0.4.PATCH
 -- by Hampter
 
 local ham = {}
@@ -182,12 +182,6 @@ ham.clock = os.clock
 ham.time = os.time
 
 
-ham.bwait = function(seconds)
-    local t0 = os.clock()
-    while os.clock() - t0 < seconds do
-    end
-end
-
 ham.timer = function()
     local start = os.clock()
     return {
@@ -221,3 +215,4 @@ end
 
 
 return ham
+
