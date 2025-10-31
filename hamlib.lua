@@ -1,4 +1,4 @@
--- hamlib 0.3.2
+-- hamlib 0.4
 -- by Hampter
 
 local ham = {}
@@ -53,7 +53,7 @@ ham.timestamp = function(fmt)
     return os.date(fmt, ham.osti())
 end
 
--- Table helpers
+
 ham.tlen = function(tbl)
     local c = 0
     for _ in pairs(tbl) do c = c + 1 end
@@ -178,12 +178,46 @@ ham.low = string.lower
 ham.fmt = string.format
 
 
-ham.sleep = function(s)
-    local t0 = os.clock()
-    while os.clock() - t0 < s do end
-end
 ham.clock = os.clock
 ham.time = os.time
+
+
+ham.bwait = function(seconds)
+    local t0 = os.clock()
+    while os.clock() - t0 < seconds do
+    end
+end
+
+ham.timer = function()
+    local start = os.clock()
+    return {
+        elapsed = function() return os.clock() - start end,
+        reset = function() start = os.clock() end
+    }
+end
+ham.lerp = function(a, b, t) return a + (b - a) * t end
+ham.round = function(num, places)
+    local mult = 10^(places or 0)
+    return math.floor(num * mult + 0.5) / mult
+end
+
+ham.spam = function(msg)
+    msg = msg or "SPAM!!!"
+    while true do
+        ham.pr(msg)
+    end
+end
+
+ham.hampter = function()
+    local hamster = [[
+ (\_._/) 
+ ( o o ) 
+  > ^ <  
+]]
+    ham.pr(hamster)
+end
+
+
 
 
 return ham
